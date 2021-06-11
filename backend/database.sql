@@ -21,7 +21,7 @@ CREATE TABLE borrowed_books (
     book_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
     date_of_rental DATE NOT NULL DEFAULT CURRENT_DATE,
-    date_of_return DATE DEFAULT NULL
+    date_of_return DATE DEFAULT NULL,
     -- date_of_return DATE NOT NULL DEFAULT CURRENT_DATE  + interval '1 week',
     returned BOOLEAN DEFAULT FALSE
 );
