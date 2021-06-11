@@ -6,7 +6,7 @@ import TransactionHistory from "../components/TransactionHistory";
 function Profile() {
   return (
     <Center>
-      <Box m="2">
+      <Box m="2" w="90%">
         <Box
           textAlign="left"
           p="3"
