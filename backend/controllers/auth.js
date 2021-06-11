@@ -4,8 +4,12 @@ const genJwt = require("../utils/generateJwt");
 
 const createUser = async (req, res) => {
   try {
-    //TODO dodac check na undefined oraz porownanie password==password2
     const { name, email, password, password2 } = req.body;
+
+    if (password !== password2) {
+      res.status(422).send("hasla sa niezgodne");
+    }
+
     const users = await pool.query("SELECT * FROM users WHERE email = $1", [
       email,
     ]);
