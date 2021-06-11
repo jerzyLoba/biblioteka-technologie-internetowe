@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import {
   Box,
   FormControl,
@@ -8,8 +8,6 @@ import {
   Button,
   Link,
   Center,
-  FormErrorMessage,
-  FormHelperText,
 } from "@chakra-ui/react";
 import axios from "axios";
 
@@ -18,6 +16,7 @@ const RegisterPage = ({ setAuthed }) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [secondPass, setSecondPass] = useState("");
+  const history = useHistory();
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -29,6 +28,7 @@ const RegisterPage = ({ setAuthed }) => {
       })
       .then((res) => {
         setAuthed(true);
+        history.push("/dashboard");
       })
       .catch((err) => console.log(err));
   };
@@ -56,12 +56,6 @@ const RegisterPage = ({ setAuthed }) => {
               autoComplete="given-name"
             />
           </FormControl>
-          {/* <FormControl id="lname" isRequired>
-            <FormLabel pt="2" fontSize="sm">
-              Nazwisko
-            </FormLabel>
-            <Input placeholder="Nowak" autoComplete="family-name" />
-          </FormControl> */}
           <FormControl id="email" isRequired>
             <FormLabel pt="2" fontSize="sm">
               Adres e-mail
