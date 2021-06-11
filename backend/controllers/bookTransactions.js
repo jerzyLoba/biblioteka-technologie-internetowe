@@ -118,7 +118,7 @@ const returnBook = async (req, res) => {
     const transactionId = borrowedBookQuery.rows[0].id;
 
     const result = await pool.query(
-      "UPDATE borrowed_books SET returned = TRUE WHERE id = $1 RETURNING *",
+      "UPDATE borrowed_books SET returned = TRUE, date_of_return = now() WHERE id = $1 RETURNING *",
       [transactionId]
     );
 
