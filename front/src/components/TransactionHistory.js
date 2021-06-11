@@ -65,9 +65,11 @@ function TransactionHistory({
                 })}
               </Td>
               <Td>
-                {format(new Date(item.date_of_return), "dd MMM yyyy", {
-                  locale: pl,
-                })}
+                {!!item.date_of_return
+                  ? format(new Date(item.date_of_return), "dd MMM yyyy", {
+                      locale: pl,
+                    })
+                  : "nieoddana"}
               </Td>
               {ButtonComponent && (
                 <Td>
