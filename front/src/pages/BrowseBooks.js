@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   SimpleGrid,
   Container,
@@ -12,10 +12,12 @@ import {
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import AdminContext from "../AdminContext";
 import BookEditModal from "../components/BookEditModal";
 import { useFetch } from "../hooks/useFetch";
 
 function BrowseBooks({ match }) {
+  const isAdmin = useContext(AdminContext);
   const [filtered, setFiltered] = useState([]);
   const [value, setValue] = useState("");
   const [added, setAdded] = useState(false);
@@ -80,9 +82,11 @@ function BrowseBooks({ match }) {
           maxW="90%"
           m="5"
         />
-        <Button colorScheme="green" onClick={onOpen}>
-          Dodaj
-        </Button>
+        {isAdmin && (
+          <Button colorScheme="green" onClick={onOpen}>
+            Dodaj
+          </Button>
+        )}
       </Flex>
       <SimpleGrid minChildWidth="450px" p="3" spacing={4}>
         {filtered.map((item, i) => (
