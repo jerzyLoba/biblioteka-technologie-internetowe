@@ -9,13 +9,12 @@ import {
 import axios from "axios";
 
 import AdminContext from "./AdminContext";
-import Home from "./pages/Home";
 import RegisterPage from "./pages/RegisterPage";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
 
-function App(props) {
+function App() {
   const [isAuthed, setAuthed] = useState(false);
   const [isAdmin, setAdmin] = useState(false);
   const { state } = useLocation();
@@ -51,7 +50,6 @@ function App(props) {
           <Route path="/register">
             <RegisterPage setAuthed={setAuthed} />
           </Route>
-          {/* <PrivateRoute isAuthed={isAuthed} path="" /> */}
           <PrivateRoute
             authed={isAuthed}
             path="/dashboard"
@@ -66,11 +64,6 @@ function App(props) {
             component={Login}
             setAuthed={setAuthed}
           />
-          {/* <Route
-            exact
-            path="/login"
-            render={(props) => <Login {...props} setAuthed={setAuthed} />}
-          /> */}
           <Route path="/">
             <Redirect to="/login" />
           </Route>
