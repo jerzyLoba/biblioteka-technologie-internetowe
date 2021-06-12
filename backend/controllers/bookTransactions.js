@@ -49,7 +49,6 @@ const getBookTransactionList = async (req, res) => {
       "SELECT * FROM borrowed_books WHERE book_id = $1",
       [id]
     );
-    // const bookTransactions = await pool.query("SELECT * FROM borrowed_books");
 
     res.status(200).json({
       history: bookTransactions.rows,
@@ -95,7 +94,7 @@ const borrowBook = async (req, res) => {
       [book_id]
     );
 
-    res.json({ transaction, book, message: "book has been borrowed" });
+    res.json({ transaction, book, message: "ksiazka zostala wypozyczona" });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Internal server error");
